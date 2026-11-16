@@ -1,0 +1,86 @@
+Milestone 2 form answers (copy each into the form)
+====================================================
+
+1. Team ID
+PE-B25-37
+
+2. Team Name as given in Milestone 1
+GeoRisk Copilot
+
+3. Project Title/Name
+RiskBrief: Grounded Risk Briefs and Customer Message Drafts from a Fraud-Risk API
+
+4. Team Leader Name
+Yashej Yang Shah
+
+5. Team Leader Enrollment No.
+S24CSEU0256
+
+6. Group (Batch)
+B25-36
+
+7. Enrollment numbers (one per line)
+S24CSEU0256
+S24CSEU0355
+
+8. Project Type (at most 2)
+App with code
+Prompt-only workflow
+
+9. Main AI tool and model
+Qwen 2.5 7B (qwen2.5:7b, Q4_K_M) on Ollama, running locally on an RTX 4070 laptop GPU; Colab T4 for the shared notebook
+
+10. Number of prompts in the final solution
+4
+
+11. Prototype link
+https://colab.research.google.com/github/YashejShah/riskbrief-georisk-copilot/blob/main/code/RiskBrief_Colab.ipynb
+
+12. Repository link
+https://github.com/YashejShah/riskbrief-georisk-copilot
+
+13. Reel link
+TBD
+
+14. Reel length in seconds
+130
+
+15. Supporting document type
+Technical Report
+
+16. Upload
+docs/GeoRiskCopilot_TechnicalReport.pdf
+
+17. Number of test inputs
+23
+
+18. Number of prompt versions
+7
+
+19. Prototype status
+Some modules working  (2 modules in the status table are 'Not started': blind human rating and the counterfactual test, both planned for Milestone 3)
+
+20. Names of working modules
+1. Test-set generator
+2. Pre-processor
+3. Playbook oracle
+4. P1 decision brief
+5. P2 English message
+6. P3 Hindi rendering
+7. Checker C1-C11
+8. P4 repair + safety net
+9. Approval page (Gradio)
+10. Colab notebook
+
+21. Upload Milestone 2 PDF
+docs/M2_PE-B25-37_RiskBrief.pdf
+
+22. Main task of each member
+S24CSEU0256 – Yashej Yang Shah – Test-set generator, pre-processor, playbook oracle, checker C1-C11, P4 repair, evaluation runner, approval page, Colab notebook and repository
+S24CSEU0355 – Tanu Somani – Wording of prompts P1-P3 and their examples, Hindi glossary and proofreading of the Hindi outputs, review of the test results, reel voice-over
+
+23. Anything the evaluator should know (optional)
+The Colab notebook opens with saved outputs from a real run. To run it again: Runtime > Change runtime type > T4 GPU, then Run all (the first cell installs Ollama and downloads the 4.7 GB model, a few minutes). The local approval page is code/app.py (needs Ollama with qwen2.5:7b). All test orders are synthetic.
+
+24. Confirmation
+Tick only after Tanu Somani has agreed to the contribution table in Section 7.
