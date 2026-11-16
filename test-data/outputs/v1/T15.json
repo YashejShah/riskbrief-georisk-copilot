@@ -1,0 +1,87 @@
+{
+ "case": {
+  "id": "T15",
+  "type": "Invalid",
+  "title": "Unknown / not merchant-facing reason code (R8)",
+  "source": "real API + perturbed",
+  "note": "reason code added (perturbed)",
+  "request": {
+   "order_id": "PE-002",
+   "amount": 89999,
+   "payment_method": "cod",
+   "timestamp": "2026-10-10T03:10:00+05:30",
+   "customer": {
+    "billing_pincode": "110001",
+    "shipping_pincode": "796001"
+   }
+  },
+  "response": {
+   "order_id": "PE-002",
+   "risk_score": 67,
+   "decision": "review",
+   "reason_codes": [
+    "ODD_HOUR",
+    "INCOME_TIER_RISK"
+   ],
+   "geo_signals": {
+    "billing_shipping_distance_km": 1649.6063783175073,
+    "region_risk": 0.01423,
+    "income_tier": "tier1",
+    "billing_district": "New Delhi",
+    "billing_state": "Delhi"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "language": "en"
+ },
+ "version": "v1",
+ "oracle": {
+  "rule": "R8",
+  "action": "NEEDS_HUMAN",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [
+  {
+   "prompt": "P0_baseline",
+   "system": "",
+   "user": "You are a risk assistant for an Indian online store. Below are the order details and the JSON our GeoRisk API returned for this order. Explain the risk to the seller in simple English and pick one action: approve, ask for OTP, ask for prepaid payment, or call the buyer. Then write a short, polite message for the buyer. Use only the information given. Never mention the buyer's region or income tier as a reason. Reply as JSON with keys action, seller_note, buyer_message.\nORDER: {\"order_id\": \"PE-002\", \"amount\": 89999, \"payment_method\": \"cod\", \"timestamp\": \"2026-10-10T03:10:00+05:30\", \"customer\": {\"billing_pincode\": \"110001\", \"shipping_pincode\": \"796001\"}}\nAPI_RESPONSE: {\"order_id\": \"PE-002\", \"risk_score\": 67, \"decision\": \"review\", \"reason_codes\": [\"ODD_HOUR\", \"INCOME_TIER_RISK\"], \"geo_signals\": {\"billing_shipping_distance_km\": 1649.6063783175073, \"region_risk\": 0.01423, \"income_tier\": \"tier1\", \"billing_district\": \"New Delhi\", \"billing_state\": \"Delhi\"}, \"model_version\": \"india-synth-0.1\", \"fairness_note\": \"No fairness adjustment needed; decision is not a decline.\"}",
+   "raw": "```json\n{\n  \"action\": \"ask for OTP\",\n  \"seller_note\": \"The order has been flagged due to an odd hour of placement and a risk associated with the income tier. To proceed, we need to verify the order through OTP.\",\n  \"buyer_message\": \"Hello, we noticed your order was placed at an unusual time. To ensure the safety of your transaction, could you please verify your order by providing an OTP sent to your registered mobile number?\"\n}\n```",
+   "json": {
+    "action": "ask for OTP",
+    "seller_note": "The order has been flagged due to an odd hour of placement and a risk associated with the income tier. To proceed, we need to verify the order through OTP.",
+    "buyer_message": "Hello, we noticed your order was placed at an unusual time. To ensure the safety of your transaction, could you please verify your order by providing an OTP sent to your registered mobile number?"
+   },
+   "fenced": true,
+   "parse_error": null,
+   "stats": {
+    "seconds": 1.97,
+    "prompt_tokens": 365,
+    "output_tokens": 99
+   }
+  }
+ ],
+ "errors": {
+  "C1": [
+   "JSON wrapped in a code fence"
+  ],
+  "C2": [],
+  "C5": [
+   "action 'ask for OTP' -> OTP_VERIFY, playbook says NEEDS_HUMAN"
+  ],
+  "C8": [
+   "a customer message was written but rule R8 says no message"
+  ],
+  "C9": [],
+  "C11": []
+ },
+ "raw_action": "OTP_VERIFY",
+ "final": {
+  "action": "ask for OTP",
+  "seller_note": "The order has been flagged due to an odd hour of placement and a risk associated with the income tier. To proceed, we need to verify the order through OTP.",
+  "buyer_message": "Hello, we noticed your order was placed at an unusual time. To ensure the safety of your transaction, could you please verify your order by providing an OTP sent to your registered mobile number?"
+ }
+}

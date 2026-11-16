@@ -1,0 +1,124 @@
+{
+ "version": "final",
+ "model": "qwen2.5:7b",
+ "model_digest": "845dbda0ea48",
+ "settings": {
+  "temperature": 0,
+  "seed": 42,
+  "num_ctx": 8192
+ },
+ "run_at": "2026-11-16T20:02:40",
+ "cases": 6,
+ "all_checks_pass": 6,
+ "raw_action_ok": 6,
+ "llm_cases": 5,
+ "mean_seconds_per_case": 8.8,
+ "per_check": {
+  "C1": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C2": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C3": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C4": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C5": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C6": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C7": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C9": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C11": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C8": {
+   "pass": 5,
+   "fail": 0
+  },
+  "C10": {
+   "pass": 4,
+   "fail": 0
+  }
+ },
+ "per_case": {
+  "H01": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 6.8,
+   "llm_calls": 2
+  },
+  "H02": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 10.2,
+   "llm_calls": 2
+  },
+  "H03": {
+   "all_checks_pass": true,
+   "raw_action": "APPROVE",
+   "playbook_action": "APPROVE",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 4.9,
+   "llm_calls": 1
+  },
+  "H04": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 14.1,
+   "llm_calls": 3
+  },
+  "H05": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 8.1,
+   "llm_calls": 2
+  },
+  "H06": {
+   "all_checks_pass": true,
+   "raw_action": "NEEDS_HUMAN",
+   "playbook_action": "NEEDS_HUMAN",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 0,
+   "llm_calls": 0
+  }
+ }
+}

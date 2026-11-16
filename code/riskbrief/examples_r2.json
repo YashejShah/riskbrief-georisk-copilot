@@ -1,0 +1,54 @@
+[
+ {
+  "source_order": "G-008",
+  "view": {
+   "order_id": "G-008",
+   "amount_inr": 89999,
+   "payment_method": "upi",
+   "order_time": "03:10",
+   "risk_score": 30,
+   "api_decision": "approve",
+   "reason_codes": [
+    "HIGH_AMOUNT",
+    "ODD_HOUR"
+   ],
+   "billing_shipping_distance_km": 0.0,
+   "region_risk": 0.01133,
+   "billing_district": "Bengaluru",
+   "billing_state": "Karnataka",
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "brief": {
+   "order_id": "G-008",
+   "status": "ok",
+   "api_decision": "approve",
+   "risk_score": 30,
+   "recommended_action": "APPROVE",
+   "offer_prepaid_option": false,
+   "secondary_action": "NONE",
+   "playbook_rule": "R2",
+   "reasons": [
+    {
+     "code": "HIGH_AMOUNT",
+     "evidence_field": "amount_inr",
+     "evidence_value": "89999",
+     "plain_language": "The order amount is Rs 89,999, which is Rs 5,000 or more."
+    },
+    {
+     "code": "ODD_HOUR",
+     "evidence_field": "order_time",
+     "evidence_value": "03:10",
+     "plain_language": "The order was placed at 03:10, before 06:00."
+    }
+   ],
+   "summary": "Risk score 30 out of 100, API decision: approve. The API still listed these reasons for information: the order amount is rs 89,999, which is rs 5,000 or more; the order was placed at 03:10, before 06:00. You can ship it as usual.",
+   "data_quality_notes": [],
+   "fairness_check": {
+    "location_or_income_used_as_reason": false,
+    "note": "Location and income were not used as reasons."
+   },
+   "customer_message_needed": false
+  }
+ }
+]

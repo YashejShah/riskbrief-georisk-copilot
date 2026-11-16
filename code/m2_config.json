@@ -1,0 +1,30 @@
+{
+    "team_id":  "PE-B25-37",
+    "team_name":  "GeoRisk Copilot",
+    "project_title":  "RiskBrief: Grounded Risk Briefs and Customer Message Drafts from a Fraud-Risk API",
+    "project_title_short":  "RiskBrief",
+    "batch":  "B25-36",
+    "faculty":  "Saurabh Srivastava",
+    "members":  [
+                    {
+                        "name":  "Yashej Yang Shah",
+                        "enrollment":  "S24CSEU0256",
+                        "role":  "Team lead, code and evaluation"
+                    },
+                    {
+                        "name":  "Tanu Somani",
+                        "enrollment":  "S24CSEU0355",
+                        "role":  "Prompt wording, Hindi, test review, reel"
+                    }
+                ],
+    "links":  {
+                  "prototype":  "https://colab.research.google.com/github/YashejShah/riskbrief-georisk-copilot/blob/main/code/RiskBrief_Colab.ipynb",
+                  "repository":  "https://github.com/YashejShah/riskbrief-georisk-copilot",
+                  "reel":  "TBD",
+                  "reel_seconds":  "TBD"
+              },
+    "contribution":  {
+                         "S24CSEU0256":  60,
+                         "S24CSEU0355":  40
+                     }
+}

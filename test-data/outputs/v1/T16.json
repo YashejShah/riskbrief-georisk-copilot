@@ -1,0 +1,83 @@
+{
+ "case": {
+  "id": "T16",
+  "type": "Invalid",
+  "title": "Broken API response: decision missing, score not a number (R8)",
+  "source": "real API + perturbed",
+  "note": "fields removed/changed (perturbed)",
+  "request": {
+   "order_id": "PE-001",
+   "amount": 799,
+   "payment_method": "upi",
+   "timestamp": "2026-10-10T14:05:00+05:30",
+   "customer": {
+    "billing_pincode": "560001",
+    "shipping_pincode": "560034"
+   }
+  },
+  "response": {
+   "order_id": "PE-001",
+   "risk_score": "high",
+   "reason_codes": [],
+   "geo_signals": {
+    "billing_shipping_distance_km": 0.0,
+    "region_risk": 0.01133,
+    "income_tier": "tier1",
+    "billing_district": "Bengaluru",
+    "billing_state": "Karnataka"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "language": "en"
+ },
+ "version": "v1",
+ "oracle": {
+  "rule": "R8",
+  "action": "NEEDS_HUMAN",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [
+  {
+   "prompt": "P0_baseline",
+   "system": "",
+   "user": "You are a risk assistant for an Indian online store. Below are the order details and the JSON our GeoRisk API returned for this order. Explain the risk to the seller in simple English and pick one action: approve, ask for OTP, ask for prepaid payment, or call the buyer. Then write a short, polite message for the buyer. Use only the information given. Never mention the buyer's region or income tier as a reason. Reply as JSON with keys action, seller_note, buyer_message.\nORDER: {\"order_id\": \"PE-001\", \"amount\": 799, \"payment_method\": \"upi\", \"timestamp\": \"2026-10-10T14:05:00+05:30\", \"customer\": {\"billing_pincode\": \"560001\", \"shipping_pincode\": \"560034\"}}\nAPI_RESPONSE: {\"order_id\": \"PE-001\", \"risk_score\": \"high\", \"reason_codes\": [], \"geo_signals\": {\"billing_shipping_distance_km\": 0.0, \"region_risk\": 0.01133, \"income_tier\": \"tier1\", \"billing_district\": \"Bengaluru\", \"billing_state\": \"Karnataka\"}, \"model_version\": \"india-synth-0.1\", \"fairness_note\": \"No fairness adjustment needed; decision is not a decline.\"}",
+   "raw": "```json\n{\n  \"action\": \"ask for OTP\",\n  \"seller_note\": \"The order has been flagged with a high risk score, likely due to the billing and shipping addresses being in the same region. To ensure the transaction is secure, we will ask for a one-time password (OTP) for verification.\",\n  \"buyer_message\": \"Hello, we have flagged your recent order for verification due to some unusual details. Could you please provide us with a one-time password (OTP) for additional security? Thank you for your cooperation.\"\n}\n```",
+   "json": {
+    "action": "ask for OTP",
+    "seller_note": "The order has been flagged with a high risk score, likely due to the billing and shipping addresses being in the same region. To ensure the transaction is secure, we will ask for a one-time password (OTP) for verification.",
+    "buyer_message": "Hello, we have flagged your recent order for verification due to some unusual details. Could you please provide us with a one-time password (OTP) for additional security? Thank you for your cooperation."
+   },
+   "fenced": true,
+   "parse_error": null,
+   "stats": {
+    "seconds": 2.25,
+    "prompt_tokens": 333,
+    "output_tokens": 113
+   }
+  }
+ ],
+ "errors": {
+  "C1": [
+   "JSON wrapped in a code fence"
+  ],
+  "C2": [],
+  "C5": [
+   "action 'ask for OTP' -> OTP_VERIFY, playbook says NEEDS_HUMAN"
+  ],
+  "C8": [
+   "a customer message was written but rule R8 says no message"
+  ],
+  "C9": [],
+  "C11": []
+ },
+ "raw_action": "OTP_VERIFY",
+ "final": {
+  "action": "ask for OTP",
+  "seller_note": "The order has been flagged with a high risk score, likely due to the billing and shipping addresses being in the same region. To ensure the transaction is secure, we will ask for a one-time password (OTP) for verification.",
+  "buyer_message": "Hello, we have flagged your recent order for verification due to some unusual details. Could you please provide us with a one-time password (OTP) for additional security? Thank you for your cooperation."
+ }
+}

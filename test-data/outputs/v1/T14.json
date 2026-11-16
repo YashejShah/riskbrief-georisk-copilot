@@ -1,0 +1,89 @@
+{
+ "case": {
+  "id": "T14",
+  "type": "Edge",
+  "title": "Region-only review (R5), Hindi message selected (P3)",
+  "source": "real API + perturbed",
+  "note": "score, codes and fairness_note set to the API's own downgrade output (perturbed); language=hi",
+  "request": {
+   "order_id": "PE-002",
+   "amount": 89999,
+   "payment_method": "cod",
+   "timestamp": "2026-10-10T03:10:00+05:30",
+   "customer": {
+    "billing_pincode": "110001",
+    "shipping_pincode": "796001"
+   }
+  },
+  "response": {
+   "order_id": "PE-002",
+   "risk_score": 83,
+   "decision": "review",
+   "reason_codes": [
+    "HIGH_RISK_REGION"
+   ],
+   "geo_signals": {
+    "billing_shipping_distance_km": 1649.6063783175073,
+    "region_risk": 0.01423,
+    "income_tier": "tier1",
+    "billing_district": "New Delhi",
+    "billing_state": "Delhi"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "Borderline decline driven only by region risk (HIGH_RISK_REGION) with no other strong signal; downgraded to 'review' so geography alone does not auto-decline an otherwise-normal order."
+  },
+  "language": "hi"
+ },
+ "version": "v1",
+ "oracle": {
+  "rule": "R5",
+  "action": "OTP_VERIFY",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": true,
+  "fairness_flag": true
+ },
+ "calls": [
+  {
+   "prompt": "P0_baseline",
+   "system": "",
+   "user": "You are a risk assistant for an Indian online store. Below are the order details and the JSON our GeoRisk API returned for this order. Explain the risk to the seller in simple English and pick one action: approve, ask for OTP, ask for prepaid payment, or call the buyer. Then write a short, polite message for the buyer. Use only the information given. Never mention the buyer's region or income tier as a reason. Reply as JSON with keys action, seller_note, buyer_message.\nORDER: {\"order_id\": \"PE-002\", \"amount\": 89999, \"payment_method\": \"cod\", \"timestamp\": \"2026-10-10T03:10:00+05:30\", \"customer\": {\"billing_pincode\": \"110001\", \"shipping_pincode\": \"796001\"}}\nAPI_RESPONSE: {\"order_id\": \"PE-002\", \"risk_score\": 83, \"decision\": \"review\", \"reason_codes\": [\"HIGH_RISK_REGION\"], \"geo_signals\": {\"billing_shipping_distance_km\": 1649.6063783175073, \"region_risk\": 0.01423, \"income_tier\": \"tier1\", \"billing_district\": \"New Delhi\", \"billing_state\": \"Delhi\"}, \"model_version\": \"india-synth-0.1\", \"fairness_note\": \"Borderline decline driven only by region risk (HIGH_RISK_REGION) with no other strong signal; downgraded to 'review' so geography alone does not auto-decline an otherwise-normal order.\"}",
+   "raw": "```json\n{\n  \"action\": \"review\",\n  \"seller_note\": \"The order has been flagged due to the high-risk region. Please review the order details carefully.\",\n  \"buyer_message\": \"Hello, we have flagged your recent order due to some high-risk factors in your region. Could you please provide us with an OTP for additional verification? Thank you for your understanding.\"\n}\n```",
+   "json": {
+    "action": "review",
+    "seller_note": "The order has been flagged due to the high-risk region. Please review the order details carefully.",
+    "buyer_message": "Hello, we have flagged your recent order due to some high-risk factors in your region. Could you please provide us with an OTP for additional verification? Thank you for your understanding."
+   },
+   "fenced": true,
+   "parse_error": null,
+   "stats": {
+    "seconds": 1.61,
+    "prompt_tokens": 386,
+    "output_tokens": 81
+   }
+  }
+ ],
+ "errors": {
+  "C1": [
+   "JSON wrapped in a code fence"
+  ],
+  "C2": [],
+  "C5": [
+   "action 'review' -> MANUAL_REVIEW, playbook says OTP_VERIFY"
+  ],
+  "C6": [],
+  "C7": [
+   "banned word in customer message: 'region'",
+   "banned word in customer message: 'risk'"
+  ],
+  "C8": [],
+  "C9": [],
+  "C11": []
+ },
+ "raw_action": "MANUAL_REVIEW",
+ "final": {
+  "action": "review",
+  "seller_note": "The order has been flagged due to the high-risk region. Please review the order details carefully.",
+  "buyer_message": "Hello, we have flagged your recent order due to some high-risk factors in your region. Could you please provide us with an OTP for additional verification? Thank you for your understanding."
+ }
+}

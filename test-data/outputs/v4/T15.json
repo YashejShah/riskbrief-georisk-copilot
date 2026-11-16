@@ -1,0 +1,91 @@
+{
+ "case": {
+  "id": "T15",
+  "type": "Invalid",
+  "title": "Unknown / not merchant-facing reason code (R8)",
+  "source": "real API + perturbed",
+  "note": "reason code added (perturbed)",
+  "request": {
+   "order_id": "PE-002",
+   "amount": 89999,
+   "payment_method": "cod",
+   "timestamp": "2026-10-10T03:10:00+05:30",
+   "customer": {
+    "billing_pincode": "110001",
+    "shipping_pincode": "796001"
+   }
+  },
+  "response": {
+   "order_id": "PE-002",
+   "risk_score": 67,
+   "decision": "review",
+   "reason_codes": [
+    "ODD_HOUR",
+    "INCOME_TIER_RISK"
+   ],
+   "geo_signals": {
+    "billing_shipping_distance_km": 1649.6063783175073,
+    "region_risk": 0.01423,
+    "income_tier": "tier1",
+    "billing_district": "New Delhi",
+    "billing_state": "Delhi"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "language": "en"
+ },
+ "version": "v4",
+ "oracle": {
+  "rule": "R8",
+  "action": "NEEDS_HUMAN",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [],
+ "errors": {},
+ "raw_action": "NEEDS_HUMAN",
+ "final": {
+  "brief": {
+   "order_id": "PE-002",
+   "status": "ok",
+   "recommended_action": "NEEDS_HUMAN",
+   "playbook_rule": "R8",
+   "summary": "This order needs a person to look at it. RiskBrief did not call the LLM because: unknown or not merchant-facing reason code(s): ['INCOME_TIER_RISK']",
+   "human_approval_required": true
+  },
+  "message_en": null,
+  "message_hi": null,
+  "reviewer_view": {
+   "request": {
+    "order_id": "PE-002",
+    "amount": 89999,
+    "payment_method": "cod",
+    "timestamp": "2026-10-10T03:10:00+05:30",
+    "customer": {
+     "billing_pincode": "110***",
+     "shipping_pincode": "796***"
+    }
+   },
+   "response": {
+    "order_id": "PE-002",
+    "risk_score": 67,
+    "decision": "review",
+    "reason_codes": [
+     "ODD_HOUR",
+     "INCOME_TIER_RISK"
+    ],
+    "geo_signals": {
+     "billing_shipping_distance_km": 1649.6063783175073,
+     "region_risk": 0.01423,
+     "billing_district": "New Delhi",
+     "billing_state": "Delhi"
+    },
+    "model_version": "india-synth-0.1",
+    "fairness_note": "No fairness adjustment needed; decision is not a decline."
+   }
+  }
+ }
+}

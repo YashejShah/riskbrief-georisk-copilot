@@ -1,0 +1,88 @@
+{
+ "case": "T05",
+ "errors_before": [
+  "C5: playbook_rule='R5' but playbook says 'R4'",
+  "C5: offer_prepaid_option=True but playbook says False"
+ ],
+ "previous_output": {
+  "order_id": "G-070",
+  "status": "ok",
+  "api_decision": "review",
+  "risk_score": 56,
+  "recommended_action": "OTP_VERIFY",
+  "offer_prepaid_option": true,
+  "secondary_action": "MANUAL_CALL",
+  "playbook_rule": "R5",
+  "reasons": [
+   {
+    "code": "ODD_HOUR",
+    "evidence_field": "order_time",
+    "evidence_value": "03:10",
+    "plain_language": "The order was placed at 03:10, before 06:00."
+   },
+   {
+    "code": "LARGE_BILLING_SHIPPING_DISTANCE",
+    "evidence_field": "billing_shipping_distance_km",
+    "evidence_value": "1650.0",
+    "plain_language": "The shipping address is 1650 km from the billing address."
+   },
+   {
+    "code": "HIGH_AMOUNT",
+    "evidence_field": "amount_inr",
+    "evidence_value": "12500",
+    "plain_language": "The order amount is Rs 12500, which is Rs 5000 or more."
+   }
+  ],
+  "summary": "Risk score 56 out of 100, API decision: review. Main reasons: the order was placed at 03:10, before 06:00, the shipping address is 1650 km away, and the order amount is Rs 12500. Ask the customer to confirm the order with an OTP before you ship. If the OTP is not confirmed, call the customer. You may also offer online payment, but cash on delivery stays available.",
+  "data_quality_notes": [],
+  "fairness_check": {
+   "location_or_income_used_as_reason": false,
+   "note": "Location and income were not used as reasons."
+  },
+  "customer_message_needed": true
+ },
+ "repair_user_prompt": "Output type: decision brief\n<input_data>\n{\n \"order_id\": \"G-070\",\n \"amount_inr\": 12500,\n \"payment_method\": \"wallet\",\n \"order_time\": \"03:10\",\n \"risk_score\": 56,\n \"api_decision\": \"review\",\n \"reason_codes\": [\n  \"ODD_HOUR\",\n  \"LARGE_BILLING_SHIPPING_DISTANCE\",\n  \"HIGH_AMOUNT\"\n ],\n \"billing_shipping_distance_km\": 1649.6,\n \"region_risk\": 0.01423,\n \"billing_district\": \"New Delhi\",\n \"billing_state\": \"Delhi\",\n \"model_version\": \"india-synth-0.1\",\n \"fairness_note\": \"No fairness adjustment needed; decision is not a decline.\"\n}\n</input_data>\n<previous_output>\n{\n \"order_id\": \"G-070\",\n \"status\": \"ok\",\n \"api_decision\": \"review\",\n \"risk_score\": 56,\n \"recommended_action\": \"OTP_VERIFY\",\n \"offer_prepaid_option\": true,\n \"secondary_action\": \"MANUAL_CALL\",\n \"playbook_rule\": \"R5\",\n \"reasons\": [\n  {\n   \"code\": \"ODD_HOUR\",\n   \"evidence_field\": \"order_time\",\n   \"evidence_value\": \"03:10\",\n   \"plain_language\": \"The order was placed at 03:10, before 06:00.\"\n  },\n  {\n   \"code\": \"LARGE_BILLING_SHIPPING_DISTANCE\",\n   \"evidence_field\": \"billing_shipping_distance_km\",\n   \"evidence_value\": \"1650.0\",\n   \"plain_language\": \"The shipping address is 1650 km from the billing address.\"\n  },\n  {\n   \"code\": \"HIGH_AMOUNT\",\n   \"evidence_field\": \"amount_inr\",\n   \"evidence_value\": \"12500\",\n   \"plain_language\": \"The order amount is Rs 12500, which is Rs 5000 or more.\"\n  }\n ],\n \"summary\": \"Risk score 56 out of 100, API decision: review. Main reasons: the order was placed at 03:10, before 06:00, the shipping address is 1650 km away, and the order amount is Rs 12500. Ask the customer to confirm the order with an OTP before you ship. If the OTP is not confirmed, call the customer. You may also offer online payment, but cash on delivery stays available.\",\n \"data_quality_notes\": [],\n \"fairness_check\": {\n  \"location_or_income_used_as_reason\": false,\n  \"note\": \"Location and income were not used as reasons.\"\n },\n \"customer_message_needed\": true\n}\n</previous_output>\n<errors>\nC5: playbook_rule='R5' but playbook says 'R4'\nC5: offer_prepaid_option=True but playbook says False\n</errors>",
+ "repaired_output": {
+  "order_id": "G-070",
+  "status": "ok",
+  "api_decision": "review",
+  "risk_score": 56,
+  "recommended_action": "OTP_VERIFY",
+  "offer_prepaid_option": false,
+  "secondary_action": "MANUAL_CALL",
+  "playbook_rule": "R4",
+  "reasons": [
+   {
+    "code": "ODD_HOUR",
+    "evidence_field": "order_time",
+    "evidence_value": "03:10",
+    "plain_language": "The order was placed at 03:10, before 06:00."
+   },
+   {
+    "code": "LARGE_BILLING_SHIPPING_DISTANCE",
+    "evidence_field": "billing_shipping_distance_km",
+    "evidence_value": "1650.0",
+    "plain_language": "The shipping address is 1650 km from the billing address."
+   },
+   {
+    "code": "HIGH_AMOUNT",
+    "evidence_field": "amount_inr",
+    "evidence_value": "12500",
+    "plain_language": "The order amount is Rs 12500, which is Rs 5000 or more."
+   }
+  ],
+  "summary": "Risk score 56 out of 100, API decision: review. Main reasons: the order was placed at 03:10, before 06:00, the shipping address is 1650 km away, and the order amount is Rs 12500. Ask the customer to confirm the order with an OTP before you ship. If the OTP is not confirmed, call the customer. You may also offer online payment, but cash on delivery stays available.",
+  "data_quality_notes": [],
+  "fairness_check": {
+   "location_or_income_used_as_reason": false,
+   "note": "Location and income were not used as reasons."
+  },
+  "customer_message_needed": true
+ },
+ "errors_after": [],
+ "stats": {
+  "seconds": 8.66,
+  "prompt_tokens": 774,
+  "output_tokens": 420
+ }
+}

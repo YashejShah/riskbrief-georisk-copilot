@@ -1,0 +1,47 @@
+[
+ {
+  "source_order": "G-169 (perturbed: region-only fairness downgrade)",
+  "view": {
+   "order_id": "G-169",
+   "amount_inr": 799,
+   "payment_method": "card",
+   "order_time": "14:05",
+   "risk_score": 82,
+   "api_decision": "review",
+   "reason_codes": [
+    "HIGH_RISK_REGION"
+   ],
+   "billing_shipping_distance_km": 7.2,
+   "region_risk": 0.01331,
+   "billing_district": "Jaipur",
+   "billing_state": "Rajasthan",
+   "model_version": "india-synth-0.1",
+   "fairness_note": "Borderline decline driven only by region risk (HIGH_RISK_REGION) with no other strong signal; downgraded to 'review' so geography alone does not auto-decline an otherwise-normal order."
+  },
+  "brief": {
+   "order_id": "G-169",
+   "status": "ok",
+   "api_decision": "review",
+   "risk_score": 82,
+   "recommended_action": "OTP_VERIFY",
+   "offer_prepaid_option": false,
+   "secondary_action": "NONE",
+   "playbook_rule": "R5",
+   "reasons": [
+    {
+     "code": "HIGH_RISK_REGION",
+     "evidence_field": "region_risk",
+     "evidence_value": "0.01331",
+     "plain_language": ""
+    }
+   ],
+   "summary": "Risk score 82 out of 100, API decision: review. The API's fairness rule changed a borderline decline into a review. One reason is a statistic about the billing state; see the note below. Ask the customer to confirm the order with an OTP before you ship.",
+   "data_quality_notes": [],
+   "fairness_check": {
+    "location_or_income_used_as_reason": false,
+    "note": "Location is not a reason to decline or block; only an OTP check is asked."
+   },
+   "customer_message_needed": true
+  }
+ }
+]

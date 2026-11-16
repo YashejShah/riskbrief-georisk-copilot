@@ -1,0 +1,86 @@
+{
+ "case": {
+  "id": "T12",
+  "type": "Edge",
+  "title": "Same review order, Hindi message selected by the reviewer (P3)",
+  "source": "real API",
+  "note": "language=hi",
+  "request": {
+   "order_id": "PE-002",
+   "amount": 89999,
+   "payment_method": "cod",
+   "timestamp": "2026-10-10T03:10:00+05:30",
+   "customer": {
+    "billing_pincode": "110001",
+    "shipping_pincode": "796001"
+   }
+  },
+  "response": {
+   "order_id": "PE-002",
+   "risk_score": 67,
+   "decision": "review",
+   "reason_codes": [
+    "ODD_HOUR",
+    "LARGE_BILLING_SHIPPING_DISTANCE",
+    "HIGH_AMOUNT"
+   ],
+   "geo_signals": {
+    "billing_shipping_distance_km": 1649.6063783175073,
+    "region_risk": 0.01423,
+    "income_tier": "tier1",
+    "billing_district": "New Delhi",
+    "billing_state": "Delhi"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "language": "hi"
+ },
+ "version": "v1",
+ "oracle": {
+  "rule": "R3",
+  "action": "OTP_VERIFY",
+  "prepaid": true,
+  "secondary": "MANUAL_CALL",
+  "message": true,
+  "fairness_flag": false
+ },
+ "calls": [
+  {
+   "prompt": "P0_baseline",
+   "system": "",
+   "user": "You are a risk assistant for an Indian online store. Below are the order details and the JSON our GeoRisk API returned for this order. Explain the risk to the seller in simple English and pick one action: approve, ask for OTP, ask for prepaid payment, or call the buyer. Then write a short, polite message for the buyer. Use only the information given. Never mention the buyer's region or income tier as a reason. Reply as JSON with keys action, seller_note, buyer_message.\nORDER: {\"order_id\": \"PE-002\", \"amount\": 89999, \"payment_method\": \"cod\", \"timestamp\": \"2026-10-10T03:10:00+05:30\", \"customer\": {\"billing_pincode\": \"110001\", \"shipping_pincode\": \"796001\"}}\nAPI_RESPONSE: {\"order_id\": \"PE-002\", \"risk_score\": 67, \"decision\": \"review\", \"reason_codes\": [\"ODD_HOUR\", \"LARGE_BILLING_SHIPPING_DISTANCE\", \"HIGH_AMOUNT\"], \"geo_signals\": {\"billing_shipping_distance_km\": 1649.6063783175073, \"region_risk\": 0.01423, \"income_tier\": \"tier1\", \"billing_district\": \"New Delhi\", \"billing_state\": \"Delhi\"}, \"model_version\": \"india-synth-0.1\", \"fairness_note\": \"No fairness adjustment needed; decision is not a decline.\"}",
+   "raw": "```json\n{\n  \"action\": \"ask for OTP\",\n  \"seller_note\": \"The order has been flagged due to an odd hour of placement, a large distance between billing and shipping addresses, and a high order amount. To ensure the safety of the transaction, we recommend asking for a one-time password (OTP) for verification.\",\n  \"buyer_message\": \"Hello, we noticed your recent order and wanted to ensure the transaction is secure. Could you please verify your identity by providing a one-time password (OTP)? This helps us protect both you and the seller. Thank you for your cooperation.\"\n}\n```",
+   "json": {
+    "action": "ask for OTP",
+    "seller_note": "The order has been flagged due to an odd hour of placement, a large distance between billing and shipping addresses, and a high order amount. To ensure the safety of the transaction, we recommend asking for a one-time password (OTP) for verification.",
+    "buyer_message": "Hello, we noticed your recent order and wanted to ensure the transaction is secure. Could you please verify your identity by providing a one-time password (OTP)? This helps us protect both you and the seller. Thank you for your cooperation."
+   },
+   "fenced": true,
+   "parse_error": null,
+   "stats": {
+    "seconds": 2.45,
+    "prompt_tokens": 371,
+    "output_tokens": 125
+   }
+  }
+ ],
+ "errors": {
+  "C1": [
+   "JSON wrapped in a code fence"
+  ],
+  "C2": [],
+  "C5": [],
+  "C6": [],
+  "C7": [],
+  "C8": [],
+  "C9": [],
+  "C11": []
+ },
+ "raw_action": "OTP_VERIFY",
+ "final": {
+  "action": "ask for OTP",
+  "seller_note": "The order has been flagged due to an odd hour of placement, a large distance between billing and shipping addresses, and a high order amount. To ensure the safety of the transaction, we recommend asking for a one-time password (OTP) for verification.",
+  "buyer_message": "Hello, we noticed your recent order and wanted to ensure the transaction is secure. Could you please verify your identity by providing a one-time password (OTP)? This helps us protect both you and the seller. Thank you for your cooperation."
+ }
+}

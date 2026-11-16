@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+*.key
+test-data/approval_log.jsonl
+docs/_build/
+docs/_reel/
+docs/_prev*
+_app*
+_scratch/

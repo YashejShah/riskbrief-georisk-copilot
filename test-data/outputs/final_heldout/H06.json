@@ -1,0 +1,85 @@
+{
+ "case": {
+  "id": "H06",
+  "type": "Invalid",
+  "title": "Unknown payment method 'crypto' (R8)",
+  "source": "real API + perturbed",
+  "note": "payment_method changed (perturbed)",
+  "language": "en",
+  "request": {
+   "order_id": "G-003",
+   "amount": 3499,
+   "payment_method": "crypto",
+   "timestamp": "2026-11-15T14:05:00+05:30",
+   "customer": {
+    "billing_pincode": "560001",
+    "shipping_pincode": "560034"
+   }
+  },
+  "response": {
+   "order_id": "G-003",
+   "risk_score": 6,
+   "decision": "approve",
+   "reason_codes": [],
+   "geo_signals": {
+    "billing_shipping_distance_km": 0.0,
+    "region_risk": 0.01133,
+    "income_tier": "tier1",
+    "billing_district": "Bengaluru",
+    "billing_state": "Karnataka"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  }
+ },
+ "version": "final",
+ "oracle": {
+  "rule": "R8",
+  "action": "NEEDS_HUMAN",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [],
+ "errors": {},
+ "raw_action": "NEEDS_HUMAN",
+ "final": {
+  "brief": {
+   "order_id": "G-003",
+   "status": "ok",
+   "recommended_action": "NEEDS_HUMAN",
+   "playbook_rule": "R8",
+   "summary": "This order needs a person to look at it. RiskBrief did not call the LLM because: unknown payment_method 'crypto'",
+   "human_approval_required": true
+  },
+  "message_en": null,
+  "message_hi": null,
+  "reviewer_view": {
+   "request": {
+    "order_id": "G-003",
+    "amount": 3499,
+    "payment_method": "crypto",
+    "timestamp": "2026-11-15T14:05:00+05:30",
+    "customer": {
+     "billing_pincode": "560***",
+     "shipping_pincode": "560***"
+    }
+   },
+   "response": {
+    "order_id": "G-003",
+    "risk_score": 6,
+    "decision": "approve",
+    "reason_codes": [],
+    "geo_signals": {
+     "billing_shipping_distance_km": 0.0,
+     "region_risk": 0.01133,
+     "billing_district": "Bengaluru",
+     "billing_state": "Karnataka"
+    },
+    "model_version": "india-synth-0.1",
+    "fairness_note": "No fairness adjustment needed; decision is not a decline."
+   }
+  }
+ }
+}

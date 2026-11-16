@@ -1,0 +1,86 @@
+{
+ "case": {
+  "id": "T09",
+  "type": "Edge",
+  "title": "Unknown PIN code: geography fields are null (R7 data-quality note)",
+  "source": "real API",
+  "note": "",
+  "request": {
+   "order_id": "PE-005",
+   "amount": 1500,
+   "payment_method": "wallet",
+   "timestamp": "2026-10-10T23:45:00+05:30",
+   "customer": {
+    "billing_pincode": "999999",
+    "shipping_pincode": "999999"
+   }
+  },
+  "response": {
+   "order_id": "PE-005",
+   "risk_score": 2,
+   "decision": "approve",
+   "reason_codes": [
+    "RISKY_PAYMENT_METHOD"
+   ],
+   "geo_signals": {
+    "billing_shipping_distance_km": 0.0,
+    "region_risk": null,
+    "income_tier": null,
+    "billing_district": null,
+    "billing_state": null
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "language": "en"
+ },
+ "version": "v1",
+ "oracle": {
+  "rule": "R2",
+  "action": "APPROVE",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [
+  {
+   "prompt": "P0_baseline",
+   "system": "",
+   "user": "You are a risk assistant for an Indian online store. Below are the order details and the JSON our GeoRisk API returned for this order. Explain the risk to the seller in simple English and pick one action: approve, ask for OTP, ask for prepaid payment, or call the buyer. Then write a short, polite message for the buyer. Use only the information given. Never mention the buyer's region or income tier as a reason. Reply as JSON with keys action, seller_note, buyer_message.\nORDER: {\"order_id\": \"PE-005\", \"amount\": 1500, \"payment_method\": \"wallet\", \"timestamp\": \"2026-10-10T23:45:00+05:30\", \"customer\": {\"billing_pincode\": \"999999\", \"shipping_pincode\": \"999999\"}}\nAPI_RESPONSE: {\"order_id\": \"PE-005\", \"risk_score\": 2, \"decision\": \"approve\", \"reason_codes\": [\"RISKY_PAYMENT_METHOD\"], \"geo_signals\": {\"billing_shipping_distance_km\": 0.0, \"region_risk\": null, \"income_tier\": null, \"billing_district\": null, \"billing_state\": null}, \"model_version\": \"india-synth-0.1\", \"fairness_note\": \"No fairness adjustment needed; decision is not a decline.\"}",
+   "raw": "```json\n{\n  \"action\": \"approve\",\n  \"seller_note\": \"The order has been approved based on the risk assessment. However, please monitor the transaction for any unusual activity.\",\n  \"buyer_message\": \"Hello, your order PE-005 has been processed successfully. If you have any concerns, feel free to reach out. Thank you for shopping with us!\"\n}\n```",
+   "json": {
+    "action": "approve",
+    "seller_note": "The order has been approved based on the risk assessment. However, please monitor the transaction for any unusual activity.",
+    "buyer_message": "Hello, your order PE-005 has been processed successfully. If you have any concerns, feel free to reach out. Thank you for shopping with us!"
+   },
+   "fenced": true,
+   "parse_error": null,
+   "stats": {
+    "seconds": 1.62,
+    "prompt_tokens": 329,
+    "output_tokens": 81
+   }
+  }
+ ],
+ "errors": {
+  "C1": [
+   "JSON wrapped in a code fence"
+  ],
+  "C2": [],
+  "C5": [],
+  "C6": [],
+  "C7": [],
+  "C8": [
+   "a customer message was written but rule R2 says no message"
+  ],
+  "C9": [],
+  "C11": []
+ },
+ "raw_action": "APPROVE",
+ "final": {
+  "action": "approve",
+  "seller_note": "The order has been approved based on the risk assessment. However, please monitor the transaction for any unusual activity.",
+  "buyer_message": "Hello, your order PE-005 has been processed successfully. If you have any concerns, feel free to reach out. Thank you for shopping with us!"
+ }
+}

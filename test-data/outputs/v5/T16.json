@@ -1,0 +1,83 @@
+{
+ "case": {
+  "id": "T16",
+  "type": "Invalid",
+  "title": "Broken API response: decision missing, score not a number (R8)",
+  "source": "real API + perturbed",
+  "note": "fields removed/changed (perturbed)",
+  "request": {
+   "order_id": "PE-001",
+   "amount": 799,
+   "payment_method": "upi",
+   "timestamp": "2026-10-10T14:05:00+05:30",
+   "customer": {
+    "billing_pincode": "560001",
+    "shipping_pincode": "560034"
+   }
+  },
+  "response": {
+   "order_id": "PE-001",
+   "risk_score": "high",
+   "reason_codes": [],
+   "geo_signals": {
+    "billing_shipping_distance_km": 0.0,
+    "region_risk": 0.01133,
+    "income_tier": "tier1",
+    "billing_district": "Bengaluru",
+    "billing_state": "Karnataka"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "No fairness adjustment needed; decision is not a decline."
+  },
+  "language": "en"
+ },
+ "version": "v5",
+ "oracle": {
+  "rule": "R8",
+  "action": "NEEDS_HUMAN",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [],
+ "errors": {},
+ "raw_action": "NEEDS_HUMAN",
+ "final": {
+  "brief": {
+   "order_id": "PE-001",
+   "status": "ok",
+   "recommended_action": "NEEDS_HUMAN",
+   "playbook_rule": "R8",
+   "summary": "This order needs a person to look at it. RiskBrief did not call the LLM because: decision missing or unknown (None); risk_score must be an integer 0-100 (got 'high')",
+   "human_approval_required": true
+  },
+  "message_en": null,
+  "message_hi": null,
+  "reviewer_view": {
+   "request": {
+    "order_id": "PE-001",
+    "amount": 799,
+    "payment_method": "upi",
+    "timestamp": "2026-10-10T14:05:00+05:30",
+    "customer": {
+     "billing_pincode": "560***",
+     "shipping_pincode": "560***"
+    }
+   },
+   "response": {
+    "order_id": "PE-001",
+    "risk_score": "high",
+    "reason_codes": [],
+    "geo_signals": {
+     "billing_shipping_distance_km": 0.0,
+     "region_risk": 0.01133,
+     "billing_district": "Bengaluru",
+     "billing_state": "Karnataka"
+    },
+    "model_version": "india-synth-0.1",
+    "fairness_note": "No fairness adjustment needed; decision is not a decline."
+   }
+  }
+ }
+}

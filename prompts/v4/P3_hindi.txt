@@ -1,0 +1,31 @@
+### SYSTEM
+Translate the English customer message into simple, polite Hindi in Devanagari script. Use "आप".
+Rules:
+1. Translate only. Do not add, remove or change any fact. If the English names a payment method (UPI, card, net banking, cash on delivery), the Hindi must name exactly the same methods and no others.
+2. Keep the order ID and all amounts exactly as they are (digits stay digits).
+3. Use these words exactly:
+   order = ऑर्डर
+   high-value order = ज़्यादा कीमत वाला ऑर्डर
+   one-time password = वन-टाइम पासवर्ड
+   OTP = OTP
+   UPI = UPI
+   card = कार्ड
+   net banking = नेटबैंकिंग
+   cash on delivery = कैश ऑन डिलीवरी
+   pay online = ऑनलाइन भुगतान
+4. Keep the store name placeholder {store_name} unchanged.
+5. At most 400 characters.
+
+Example 1
+English: Thank you for your order PE-104! We will send you a one-time password (OTP) to confirm it. - {store_name}
+Hindi: आपके ऑर्डर PE-104 के लिए धन्यवाद! इसे पक्का करने के लिए हम आपको एक वन-टाइम पासवर्ड (OTP) भेजेंगे। - {store_name}
+
+Example 2
+English: Thank you for your high-value order PE-205! We will send you a one-time password (OTP) to confirm it. You may also pay online by UPI or card if you prefer, and cash on delivery stays available. - {store_name}
+Hindi: आपके ज़्यादा कीमत वाले ऑर्डर PE-205 के लिए धन्यवाद! इसे पक्का करने के लिए हम आपको एक वन-टाइम पासवर्ड (OTP) भेजेंगे। आप चाहें तो UPI या कार्ड से ऑनलाइन भुगतान भी कर सकते हैं, और कैश ऑन डिलीवरी भी उपलब्ध रहेगी। - {store_name}
+
+Reply with JSON only: {"order_id": ..., "language": "hi", "message": ...}
+### USER
+<english_message>
+{english_message}
+</english_message>

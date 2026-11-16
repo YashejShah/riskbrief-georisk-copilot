@@ -1,0 +1,88 @@
+{
+ "case": {
+  "id": "T07",
+  "type": "Edge",
+  "title": "Order the API declines (R6: a person decides, the model never cancels)",
+  "source": "real API + perturbed",
+  "note": "score 67->91 and decision review->decline, fairness_note = the API's own text for this case (perturbed); no grid order was declined",
+  "request": {
+   "order_id": "PE-002",
+   "amount": 89999,
+   "payment_method": "cod",
+   "timestamp": "2026-10-10T03:10:00+05:30",
+   "customer": {
+    "billing_pincode": "110001",
+    "shipping_pincode": "796001"
+   }
+  },
+  "response": {
+   "order_id": "PE-002",
+   "risk_score": 91,
+   "decision": "decline",
+   "reason_codes": [
+    "ODD_HOUR",
+    "LARGE_BILLING_SHIPPING_DISTANCE",
+    "HIGH_AMOUNT"
+   ],
+   "geo_signals": {
+    "billing_shipping_distance_km": 1649.6063783175073,
+    "region_risk": 0.01423,
+    "income_tier": "tier1",
+    "billing_district": "New Delhi",
+    "billing_state": "Delhi"
+   },
+   "model_version": "india-synth-0.1",
+   "fairness_note": "Decline driven by non-geographic risk factors; no region-based fairness concern."
+  },
+  "language": "en"
+ },
+ "version": "v1",
+ "oracle": {
+  "rule": "R6",
+  "action": "MANUAL_REVIEW",
+  "prepaid": false,
+  "secondary": "NONE",
+  "message": false,
+  "fairness_flag": false
+ },
+ "calls": [
+  {
+   "prompt": "P0_baseline",
+   "system": "",
+   "user": "You are a risk assistant for an Indian online store. Below are the order details and the JSON our GeoRisk API returned for this order. Explain the risk to the seller in simple English and pick one action: approve, ask for OTP, ask for prepaid payment, or call the buyer. Then write a short, polite message for the buyer. Use only the information given. Never mention the buyer's region or income tier as a reason. Reply as JSON with keys action, seller_note, buyer_message.\nORDER: {\"order_id\": \"PE-002\", \"amount\": 89999, \"payment_method\": \"cod\", \"timestamp\": \"2026-10-10T03:10:00+05:30\", \"customer\": {\"billing_pincode\": \"110001\", \"shipping_pincode\": \"796001\"}}\nAPI_RESPONSE: {\"order_id\": \"PE-002\", \"risk_score\": 91, \"decision\": \"decline\", \"reason_codes\": [\"ODD_HOUR\", \"LARGE_BILLING_SHIPPING_DISTANCE\", \"HIGH_AMOUNT\"], \"geo_signals\": {\"billing_shipping_distance_km\": 1649.6063783175073, \"region_risk\": 0.01423, \"income_tier\": \"tier1\", \"billing_district\": \"New Delhi\", \"billing_state\": \"Delhi\"}, \"model_version\": \"india-synth-0.1\", \"fairness_note\": \"Decline driven by non-geographic risk factors; no region-based fairness concern.\"}",
+   "raw": "```json\n{\n  \"action\": \"call the buyer\",\n  \"seller_note\": \"The order has been flagged with high risk due to unusual billing and shipping distances, as well as the time of the transaction. We need to verify the order details with the buyer to ensure everything is correct.\",\n  \"buyer_message\": \"Hello, we noticed some unusual activity with your recent order and would like to verify a few details with you. Could you please confirm the order? Thank you for your cooperation.\"\n}\n```",
+   "json": {
+    "action": "call the buyer",
+    "seller_note": "The order has been flagged with high risk due to unusual billing and shipping distances, as well as the time of the transaction. We need to verify the order details with the buyer to ensure everything is correct.",
+    "buyer_message": "Hello, we noticed some unusual activity with your recent order and would like to verify a few details with you. Could you please confirm the order? Thank you for your cooperation."
+   },
+   "fenced": true,
+   "parse_error": null,
+   "stats": {
+    "seconds": 2.06,
+    "prompt_tokens": 378,
+    "output_tokens": 104
+   }
+  }
+ ],
+ "errors": {
+  "C1": [
+   "JSON wrapped in a code fence"
+  ],
+  "C2": [],
+  "C5": [],
+  "C6": [],
+  "C7": [],
+  "C8": [
+   "a customer message was written but rule R6 says no message"
+  ],
+  "C9": [],
+  "C11": []
+ },
+ "raw_action": "MANUAL_REVIEW",
+ "final": {
+  "action": "call the buyer",
+  "seller_note": "The order has been flagged with high risk due to unusual billing and shipping distances, as well as the time of the transaction. We need to verify the order details with the buyer to ensure everything is correct.",
+  "buyer_message": "Hello, we noticed some unusual activity with your recent order and would like to verify a few details with you. Could you please confirm the order? Thank you for your cooperation."
+ }
+}

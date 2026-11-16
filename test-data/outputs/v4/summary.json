@@ -1,0 +1,238 @@
+{
+ "version": "v4",
+ "model": "qwen2.5:7b",
+ "model_digest": "845dbda0ea48",
+ "settings": {
+  "temperature": 0,
+  "seed": 42,
+  "num_ctx": 8192
+ },
+ "run_at": "2026-11-16T19:52:59",
+ "cases": 17,
+ "all_checks_pass": 15,
+ "raw_action_ok": 17,
+ "llm_cases": 14,
+ "mean_seconds_per_case": 8.8,
+ "per_check": {
+  "C1": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C2": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C3": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C4": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C5": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C6": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C7": {
+   "pass": 12,
+   "fail": 2
+  },
+  "C9": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C11": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C8": {
+   "pass": 14,
+   "fail": 0
+  },
+  "C10": {
+   "pass": 9,
+   "fail": 0
+  }
+ },
+ "per_case": {
+  "T01": {
+   "all_checks_pass": true,
+   "raw_action": "APPROVE",
+   "playbook_action": "APPROVE",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 3.0,
+   "llm_calls": 1
+  },
+  "T02": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 10.6,
+   "llm_calls": 2
+  },
+  "T03": {
+   "all_checks_pass": true,
+   "raw_action": "APPROVE",
+   "playbook_action": "APPROVE",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 7.5,
+   "llm_calls": 2
+  },
+  "T04": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 6.3,
+   "llm_calls": 2
+  },
+  "T05": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 9.7,
+   "llm_calls": 2
+  },
+  "T06": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 8.5,
+   "llm_calls": 2
+  },
+  "T07": {
+   "all_checks_pass": true,
+   "raw_action": "MANUAL_REVIEW",
+   "playbook_action": "MANUAL_REVIEW",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 8.2,
+   "llm_calls": 1
+  },
+  "T08": {
+   "all_checks_pass": true,
+   "raw_action": "APPROVE",
+   "playbook_action": "APPROVE",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 3.1,
+   "llm_calls": 1
+  },
+  "T09": {
+   "all_checks_pass": true,
+   "raw_action": "APPROVE",
+   "playbook_action": "APPROVE",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 8.7,
+   "llm_calls": 2
+  },
+  "T10": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 10.6,
+   "llm_calls": 2
+  },
+  "T11": {
+   "all_checks_pass": false,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [
+    "C7: blame/income wording in brief: 'region is considered high-risk'"
+   ],
+   "escalated": true,
+   "seconds": 9.2,
+   "llm_calls": 3
+  },
+  "T12": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 14.7,
+   "llm_calls": 3
+  },
+  "T13": {
+   "all_checks_pass": true,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 12.3,
+   "llm_calls": 3
+  },
+  "T14": {
+   "all_checks_pass": false,
+   "raw_action": "OTP_VERIFY",
+   "playbook_action": "OTP_VERIFY",
+   "raw_action_ok": true,
+   "errors": [
+    "C7: blame/income wording in brief: 'region is considered high-risk'"
+   ],
+   "escalated": true,
+   "seconds": 11.4,
+   "llm_calls": 4
+  },
+  "T15": {
+   "all_checks_pass": true,
+   "raw_action": "NEEDS_HUMAN",
+   "playbook_action": "NEEDS_HUMAN",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 0,
+   "llm_calls": 0
+  },
+  "T16": {
+   "all_checks_pass": true,
+   "raw_action": "NEEDS_HUMAN",
+   "playbook_action": "NEEDS_HUMAN",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 0,
+   "llm_calls": 0
+  },
+  "T17": {
+   "all_checks_pass": true,
+   "raw_action": "NEEDS_HUMAN",
+   "playbook_action": "NEEDS_HUMAN",
+   "raw_action_ok": true,
+   "errors": [],
+   "escalated": false,
+   "seconds": 0,
+   "llm_calls": 0
+  }
+ }
+}
