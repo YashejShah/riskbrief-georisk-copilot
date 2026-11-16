@@ -40,7 +40,7 @@ https://colab.research.google.com/github/YashejShah/riskbrief-georisk-copilot/bl
 https://github.com/YashejShah/riskbrief-georisk-copilot
 
 13. Reel link
-TBD
+https://drive.google.com/file/d/1JzHneN2exFAd32-VKovUW8gXUPyIC-1i/view?usp=sharing
 
 14. Reel length in seconds
 130
